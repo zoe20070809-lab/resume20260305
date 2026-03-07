@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徐悅容 | 個人數位履歷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --text-dark: #2d3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f0f2f5;
+            background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* 履歷主體 - 毛玻璃效果 */
+        .resume-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .name { font-size: 2.5em; margin: 0; letter-spacing: 2px; }
+        .subtitle { font-size: 1.1em; opacity: 0.9; margin-top: 10px; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #6c5ce7;
+            border-bottom: 2px solid #a29bfe;
+            padding-bottom: 5px;
+            font-size: 1.3em;
+        }
+
+        /* 技能標籤效果 */
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-item {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .skill-item:hover {
+            background: #6c5ce7;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+        }
+
+        .contact-info span { font-weight: bold; margin-right: 10px; color: #6c5ce7; }
+
+        .about-text { line-height: 1.8; color: var(--text-dark); }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            font-size: 0.8em;
+            color: #636e72;
+        }
+
+        /* RWD 響應式 */
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .name { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-card">
+        <header>
+            <h1 class="name">徐悅容</h1>
+            <p class="subtitle">亞洲大學 聽力暨語言治療學系 </p>
+        </header>
+
+        <div class="content-grid">
+            <aside>
+                <section>
+                    <h2>聯絡資訊</h2>
+                    <div class="contact-info">
+                        <p><span>📧</span> 114018071@live.asia.edu.tw</p>
+                        <p><span>📞</span> 0930117718 </p>
+                        <p><span>📍</span> 台灣</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>專業技能</h2>
+                    <div class="skill-list">
+                        <div class="skill-item">聽力生理學</div>
+                        <div class="skill-item">神經科學分析</div>
+                        <div class="skill-item">數位插畫創作</div>
+                        <div class="skill-item">Clip Studio Paint</div>
+                        <div class="skill-item">Git 版本控制</div>
+                        <div class="skill-item">網頁排版設計</div>
+                    </div>
+                </section>
+            </aside>
+
+            <main>
+                <section>
+                    <h2>個人簡介</h2>
+                    <p class="about-text">
+                        你好！我是悅容，目前就讀於亞洲大學聽語系。我是一位熱衷於結合「專業醫療知識」與「數位視覺藝術」的跨領域學習者。
+                        在學術上，我專注於學習；在創作上，我則是一位擅長二次元風格的插畫師。我喜歡學習新技術（如 Git 與網頁開發），並相信邏輯條理與藝術感性能在專業領域中激盪出不同的火花。
+                    </p>
+                </section>
+
+                <section>
+                    <h2>學歷背景</h2>
+                    <p><strong>亞洲大學</strong><br>
+                    聽力暨語言治療學系 (在學中)<br>
+                    學號：AU114018071</p>
+                </section>
+                
+                <section>
+                    <h2>特別經歷</h2>
+                    <ul class="about-text">
+                        <li>柳營奇美醫院 專業參訪紀錄</li>
+                        <li>社團活動企劃與破冰遊戲帶領</li>
+                        <li>多媒體偶像企劃研究與同人創作</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            &copy; 2026 徐悅容 Hsiu Yue-Rung. 版權所有。
+        </footer>
+    </div>
+
+    <script>
+        // 增加一個互動彩蛋：點擊姓名會換顏色
+        const nameTitle = document.querySelector('.name');
+        nameTitle.addEventListener('click', () => {
+            const colors = ['#fff', '#ffd700', '#ff9ff3', '#00d2d3'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            nameTitle.style.color = randomColor;
+        });
+
+        console.log("履歷載入完成！");
+    </script>
+</body>
+</html>
