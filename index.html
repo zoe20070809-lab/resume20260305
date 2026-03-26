@@ -4,150 +4,294 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>徐悅容 | 個人履歷</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* 基礎變數與設定 */
         :root {
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --accent-color: #6c5ce7;
-            --text-main: #2d3436;
+            --bg-body: #f4f7f6; /* 整體背景：淺灰 */
+            --sidebar-bg: #2c3e50; /* 側邊欄背景：深藍灰 */
+            --sidebar-text: #ecf0f1; /* 側邊欄文字：幾乎是白色 */
+            --main-text: #2d3436; /* 主要內容文字：深灰 */
+            --accent-light: #9b59b6; /* 裝飾色：亮紫（用於右側標題） */
+            --accent-dark: #8e44ad; /* 裝飾色：深紫（用於右側標題底線） */
         }
 
-        * { box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
-
+        * { box-sizing: border-box; }
         body {
             margin: 0;
-            padding: 20px;
-            background: var(--bg-gradient);
-            min-height: 100vh;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--main-text);
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
 
+        /* 核心履歷容器：使用雙欄結構 */
         .resume-container {
-            max-width: 950px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 90%;
+            height: 90vh; /* 固定高度，優雅地顯示在螢幕中央 */
+            background: white;
+            border-radius: 8px; /* 稍微圓角 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: grid;
+            grid-template-columns: 350px 1fr; /* 固定左側藍欄 350px，右側自適應 */
+            overflow: hidden; /* 確保圓角效果 */
+        }
+
+        /* ==============================
+           左側欄 (Sidebar) - 深色底
+           ============================== */
+        aside {
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 40px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            overflow-y: auto; /* 如果內容太多，允許欄內捲動 */
+        }
+
+        /* 照片容器 */
+        .profile-photo-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* 圓形 */
             overflow: hidden;
+            border: 5px solid rgba(255,255,255,0.2); /* 霧面邊框 */
+            margin-bottom: 30px;
         }
 
-        /* 頂部橫幅 */
-        header {
-            background: #6c5ce7;
+        .profile-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 左側欄標題 (聯絡資訊、專業技能) */
+        aside h2 {
+            width: 100%;
             color: white;
-            padding: 30px;
+            font-size: 1.3em;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
         }
 
-        h1 { margin: 0; font-size: 2.2em; letter-spacing: 3px; }
-        .tagline { opacity: 0.9; margin-top: 5px; font-weight: 300; }
-
-        /* 主要內容區 */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            padding: 30px;
-            gap: 30px;
-        }
-
-        section { margin-bottom: 25px; }
-        h2 {
-            color: var(--accent-color);
-            font-size: 1.2em;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
+        /* 聯絡資訊條目 */
+        .info-item {
+            width: 100%;
             margin-bottom: 15px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            opacity: 0.9;
         }
 
-        /* 聯絡資訊樣式 */
-        .info-item { margin-bottom: 12px; font-size: 0.95em; }
-        .info-label { font-weight: bold; color: #555; width: 50px; display: inline-block; }
+        .info-label {
+            font-weight: bold;
+            width: 60px; /* 固定標籤寬度 */
+            margin-right: 10px;
+        }
 
-        /* 技能標籤 */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        /* 左側技能標籤：改成簡約樣式 */
+        .skills-grid {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .skill-tag {
-            background: #eeeefd;
-            color: #6c5ce7;
-            padding: 5px 12px;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 15px;
             border-radius: 4px;
             font-size: 0.85em;
-            border: 1px solid #dcdde1;
-        }
-
-        .intro-p { line-height: 1.7; color: #444; font-size: 1em; margin: 0; }
-
-        /* 底部 */
-        footer {
-            background: #f1f2f6;
             text-align: center;
-            padding: 15px;
-            font-size: 0.8em;
-            color: #7f8c8d;
+            transition: background 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(255,255,255,0.1);
         }
 
-        @media (max-width: 768px) {
-            .main-content { grid-template-columns: 1fr; }
+        /* ==============================
+           右側主要內容 (Main) - 白色底
+           ============================== */
+        main {
+            padding: 50px;
+            overflow-y: auto; /* 允許內容本身捲動 */
+        }
+
+        /* 姓名與系所：置頂，模仿範例的字體樣式 */
+        .name-header {
+            margin-bottom: 40px;
+        }
+
+        .name-header h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif; /* 襯線字體，模仿範例 */
+            font-size: 3.5em;
+            color: #2c3e50;
+            letter-spacing: 2px;
+        }
+
+        .name-header .tagline {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-weight: 300;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* 右側各區塊標題 */
+        main section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-light);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        /* 標題下方的圓點與底線裝飾（模仿範例） */
+        main section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-dark);
+            border-radius: 2px;
+        }
+
+        /* 內容樣式 */
+        .intro-p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05em;
+            margin-bottom: 30px;
+        }
+
+        /* 學歷經歷條目 */
+        .experience-item {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 120px 1fr; /* 固定時間寬度 */
+            gap: 15px;
+            font-size: 1em;
+        }
+
+        .experience-date {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .experience-content strong {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        /* 底部版權：放在 aside 或 main 底部都可以，這裡放在aside最下方 */
+        footer {
+            margin-top: auto; /* 將 footer 推到底部 */
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        /* 響應式設計：小螢幕時改回單欄 */
+        @media (max-width: 850px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                height: auto;
+                width: 95%;
+                margin: 20px 0;
+            }
+            aside {
+                height: auto;
+                overflow: visible;
+            }
+            main {
+                overflow: visible;
+                padding: 30px;
+            }
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="resume-container">
-        <header>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="./me.jpg" alt="徐悅容的照片" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 15px;">
+        <aside>
+            <div class="profile-photo-container">
+                <img src="./me.jpg" alt="徐悅容的照片">
             </div>
-            <h1>徐悅容</h1>
-            <div class="tagline">亞洲大學 聽力暨語言治療學系 </div>
-        </header>
 
-        <div class="main-content">
-            <aside>
-                <section>
-                    <h2>聯絡資訊</h2>
-                    <div class="info-item"><span class="info-label">學號</span> 114018071</div>
-                    <div class="info-item"><span class="info-label">信箱</span> 114018071@live.asia.edu.tw</div>
-                    <div class="info-item"><span class="info-label">電話</span> 0930-xxx-xxx</div>
-                    <div class="info-item"><span class="info-label">地點</span> 台灣</div>
-                </section>
+            <section style="width: 100%;">
+                <h2>聯絡資訊</h2>
+                <div class="info-item"><span class="info-label">學號</span> 114018071</div>
+                <div class="info-item"><span class="info-label">信箱</span> 114018071@live.asia.edu.tw</div>
+                <div class="info-item"><span class="info-label">電話</span> 0930-xxx-xxx</div>
+                <div class="info-item"><span class="info-label">地點</span> 台灣</div>
+            </section>
 
-                <section>
-                    <h2>專業技能</h2>
-                    <div class="skills-grid">
-                        <div class="skill-tag">數位插畫創作</div>
-                        <div class="skill-tag">Clip Studio Paint</div>
-                        <div class="skill-tag">Git 版本控制</div>
-                        <div class="skill-tag">同人創作企劃</div>
-                    </div>
-                </section>
-            </aside>
+            <section style="width: 100%;">
+                <h2>專業技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-tag">數位插畫創作</div>
+                    <div class="skill-tag">Clip Studio Paint</div>
+                    <div class="skill-tag">Git 版本控制</div>
+                    <div class="skill-tag">同人創作企劃</div>
+                </div>
+            </section>
 
-            <main>
-                <section>
-                    <h2>個人簡介</h2>
-                    <p class="intro-p">
-                        我是徐悅容，目前就讀於亞洲大學聽語系。我是一位跨領域的學習者，致力於將聽覺醫學專業知識與數位藝術創作相結合。我也在數位插畫領域持續精進，擅長二次元人物創作與社群接案經營。
-                    </p>
-                </section>
+            <footer>
+                &copy; 2026 Hsiu Yue-Rung.<br>版權所有
+            </footer>
+        </aside>
 
-                <section>
-                    <h2>學歷經歷</h2>
-                    <p class="intro-p">
-                        <strong>亞洲大學</strong> - 聽力暨語言治療學系 (在學中)<br>
+        <main>
+            <div class="name-header">
+                <h1>徐悅容</h1>
+                <div class="tagline">亞洲大學 聽力暨語言治療學系</div>
+            </div>
+
+            <section>
+                <h2>個人簡介</h2>
+                <p class="intro-p">
+                    我是徐悅容，目前就讀於亞洲大學聽語系。我是一位跨領域的學習者，致力於將聽覺醫學專業知識與數位藝術創作相結合。我也在數位插畫領域持續精進，擅長二次元人物創作與社群接案經營。
+                </p>
+            </section>
+
+            <section>
+                <h2>學歷經歷</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-date">在學中</div>
+                    <div class="experience-content">
+                        <strong>亞洲大學</strong><br>
+                        聽力暨語言治療學系<br>
                         • 參與台南柳營奇美醫院專業參訪<br>
-                        • 負責教育性質社團破冰遊戲策劃<br>
-                         
-                </section>
-            </main>
-        </div>
+                        • 負責教育性質社團破冰遊戲策劃
+                    </div>
+                </div>
 
-        <footer>
-            &copy; 2026 徐悅容 Hsu Yue-Rong. 版權所有。
-        </footer>
+            </section>
+        </main>
     </div>
 
 </body>
