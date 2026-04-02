@@ -293,6 +293,21 @@
             </section>
         </main>
     </div>
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(255,255,255,0.8); padding: 10px; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+    <audio id="resumeBgm" controls autoplay loop style="height: 30px;">
+        <source src="bgm.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音檔播放。
+    </audio>
+</div>
 
+<script>
+    // 監測網頁點擊，一旦使用者點擊任何地方就嘗試播放
+    document.addEventListener('click', function() {
+        var audio = document.getElementById('resumeBgm');
+        if (audio.paused) {
+            audio.play();
+        }
+    }, { once: true });
+</script>
 </body>
 </html>
