@@ -7,6 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         /* 基礎變數與設定 */
+        /* 大頭貼樣式 */
+.profile-photo {
+    width: 150px;           /* 強制寬度 */
+    height: 150px;          /* 強制高度 */
+    border-radius: 50%;     /* 變圓形 */
+    object-fit: cover;      /* 圖片不變形，自動填滿圓形區域 */
+    border: 5px solid white;/* 白色外框 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* 陰影 */
+    display: block;
+    margin: 0 auto 20px;    /* 置中並與下方拉開距離 */
+}
         :root {
             --bg-body: #f4f7f6; /* 整體背景：淺灰 */
             --sidebar-bg: #2c3e50; /* 側邊欄背景：深藍灰 */
@@ -238,7 +249,7 @@
     <div class="resume-container">
         <aside>
             <div class="profile-photo-container">
-                <img src="./me.jpg" alt="徐悅容的照片">
+                <img src="./me.jpg" class="profile-photo" alt="徐悅容的照片">
             </div>
 
             <section style="width: 100%;">
